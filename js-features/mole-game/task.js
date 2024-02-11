@@ -11,8 +11,8 @@ clickCount = () => {
     }
 
     let holeNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    for (let i = 0; i < holeNumbers.length; i++) {
-        if (holeNumber[i].onclick) {
+    for (let i = 0; i < holeNumber.length; i++) {
+        if (document.getElementById(`hole${i}`).onclick) {
             let element = document.getElementById(`hole${i}`);
             if (element.className.contains('hole_has-mole')) {
                 deadMoles.textContent += 1;
@@ -21,5 +21,6 @@ clickCount = () => {
             }
         }
     }
-
+    // Проверять лунки с номерами из массива на нажатие.
+    // При нажатии обратиться к элементу по id 'лунка[номер нажатой лунки]'
 }
