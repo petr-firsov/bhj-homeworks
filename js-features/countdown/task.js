@@ -1,10 +1,12 @@
-let time = document.getElementById('timer').textContent;
-let seconds = Number(time);
+let time = document.getElementById('timer');
 
-let timerId = setInterval(time => {
-    if (seconds !== 0) { 
-        time = seconds - 1; 
+let timerId = setInterval(() => {
+    if ((Number(time.textContent)) !== 0) { 
+        time.textContent = Number(time.textContent) - 1; 
+    } 
+    else { 
+        alert('Вы победили в конкурсе!');
+        clearInterval(timerId);
     }
     },
     1000);
-
