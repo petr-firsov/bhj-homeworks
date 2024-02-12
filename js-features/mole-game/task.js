@@ -3,11 +3,15 @@ let misses = document.getElementById('lost');
 
 clickCount = () => {
     if (Number(deadMoles.textContent) === 10) {
-        alert('Победа!')
+        alert('Победа!');
+        deadMoles.textContent = 0;
+        misses.textContent = 0;
     }
 
     if (Number(misses.textContent) === 5) {
-        alert('Вы проиграли!')
+        alert('Вы проиграли!');
+        deadMoles.textContent = 0;
+        misses.textContent = 0;
     }
 
     const getHole = index => document.getElementById(`hole${index}`);
@@ -16,10 +20,10 @@ clickCount = () => {
         let hole = getHole(index);
         hole.onclick = function() {
             if (hole.className.includes('hole_has-mole')) {
-                    deadMoles.textContent += 1;
-                } else {
-                    misses.textContent += 1;
-                }
+                deadMoles.textContent += 1;
+            } else {
+                misses.textContent += 1;
+            }
         }
     }
 }
