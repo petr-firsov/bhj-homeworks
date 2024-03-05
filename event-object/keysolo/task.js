@@ -25,13 +25,22 @@ class Game {
       При неправильном вводе символа - this.fail();
       DOM-элемент текущего символа находится в свойстве this.currentSymbol.
      */
-    this.addEventListener('keyup', function(KeyboardEvent) {
-        if (KeyboardEvent.code.textContent === this.currentSymbol.textContent) {
+    this.currentSymbol.addEventListener('keyup', function(keyboardEvent) {
+        if (keyboardEvent.code.textContent === this.currentSymbol.textContent) {
           this.success()
-        } 
-        this.fail();
+        } else { 
+          this.fail();
+        }
     });
   }
+
+  /*
+  Во втором задании выполнил три ваши рекомендации из четырёх.
+  Что касается отладчика, он у меня не работает :(
+  Я выставляю точку останова, а он останвливается где угодно,
+  только не на ней. И это не только в этом задании, но и в других.
+  )
+  */
 
   success() {
     if(this.currentSymbol.classList.contains("symbol_current")) this.currentSymbol.classList.remove("symbol_current");
