@@ -1,30 +1,24 @@
 const fontSizes = document.querySelectorAll('.font-size');
-const book = document.querySelector('book');
+const bookContent = document.querySelector('.book__content');
 
 for (let i = 0; i < fontSizes.length; i++) {
-    fontSizes[i].addEventListener('click', function() {
-        for (let i = 0; i < fontSizes.length; i++) {
-            let fontButton = fontSizes[i];
-            fontButton.classList.remove('font-size_active');
-            if (fontButton.classList.contains('books_fs-small')) {
-                fontButton.classList.remove('book_fs-small')
-            } 
-            if (fontButton.classList.contains('books_fs-big')) {
-                fontButton.classList.remove('book_fs-big')
-            }
-        };
+    fontSizes[i].addEventListener('click', (click) => {
+        click.preventDefault();
 
-        this.classList.add('font-size_active');
+        let activeFont = document.querySelector('.font-size_active');
+        activeFont.classList.remove('font-size_active');
+        fontSizes[i].classList.add('font-size_active');
+        activeFont = fontSizes[i];
 
-        if (this.classList.contains('font-size_small')) {
-            this.classList.add('book_fs-small');
-        } else if (this.classList.contains('font-size_big')) {
-            this.classList.add('book_fs-big')
-        } 
+        if (activeFont.classList.contains('book_fs-big')) {
+            bookContent.classList.remove('book_fs-small');
+            bookContent.classList.add('book_fs-big');
+        } else if (activeFont.classList.contains('book_fs-small')) {
+            bookContent.classList.remove('book_fs-big');
+            bookContent.classList.add('book_fs-small');
+        } else {
+            bookContent.classList.remove('book_fs-small');
+            bookContent.classList.remove('book_fs-big');
+        }
     });
 }
-
-/* 
-Почему при нажатии на кнопку размера шрифта кнопка на мгновение переключается,
-шрифт не меняется, и потом кнопка сразу возвращается?
-*/
