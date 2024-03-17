@@ -20,8 +20,8 @@ class Game {
     const body = document.body;
     
     body.addEventListener('keyup', (inputKey) => {
-      if (inputKey.key === this.currentSymbol) {
-        this.success;
+      if (inputKey.key === this.currentSymbol.textContent) {
+        this.success();
       } else {
         this.fail();
       }
