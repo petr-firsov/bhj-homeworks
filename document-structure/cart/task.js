@@ -8,13 +8,14 @@ const productQuantity = document.querySelectorAll('.product__quantity-value');
 const productAdd = document.querySelectorAll('.product__add');
 
 // Корзина
-const cartProducts = document.querySelector('.cart__products');
+const cart = document.querySelector('.cart__products');
+const addedProducts = document.getElementsByClassName('.cart__product');
 
 // Изображения товаров
 const productImages = document.querySelectorAll('.product__image');
 
-// Увеличение/уменьшение количества товара
 
+// Увеличение/уменьшение количества товара
 for (let i = 0; i < productDecrease.length; i++) {
     productDecrease[i].addEventListener('click', () => {
         if (Number(productQuantity[i].textContent) !== 0) {
@@ -30,17 +31,27 @@ for (let i = 0; i < productIncrease.length; i++) {
 }
 
 // Добавление товара в корзину
-
 for (let i = 0; i < products.length; i++) {
     productAdd[i].addEventListener('click', () => {
-        cartProducts.insertAdjacentHTML('beforeEnd', '<div class="cart__product"><img class="cart__product-image"><div class="cart__product-count"></div></div>')
+        // Увеличение количества товара в корзине
+        for (let a = 0; a < addedProducts; a++) {
+            if (addedProducts[i].dataset.id === i) {
+                let cartProductCount = document.querySelector('.cart__product-count');
+                cartProductCount.textContent = Number(cartProductCount.textContent) + Number(productQuantity[i].textContent);
+            }
+        }
+
+        // Создать элемент товара в корзине
+        cart.insertAdjacentHTML('beforeEnd', '<div class="cart__product"><img class="cart__product-image"><div class="cart__product-count"></div></div>')
+        
+        // Присвоить data-id, изображение и количество
         let cartProduct = document.querySelector('.cart__product');
         cartProduct.dataset.id = `${i}`;
         let cartProductImage = document.querySelector('.cart__product-image');
         let productImage = productImages[i].getAttribute('src');
         cartProductImage.setAttribute('src', productImage);
         let cartProductCount = document.querySelector('.cart__product-count');
-        cartProductCount.textContent = productQuantity.textContent;
+        cartProductCount.textContent = productQuantity[i].textContent; 
     });
 }
 
