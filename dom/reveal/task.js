@@ -12,4 +12,4 @@ function revealAd() {
     }
 }
 
-body.addEventListener('scroll', revealAd());
+document.addEventListener('scroll', revealAd);
