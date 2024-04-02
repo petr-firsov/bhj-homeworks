@@ -30,8 +30,8 @@ for (let i = 0; i < tooltips.length; i++) {
     
                 // Разместить подсказку на странице
                 let tooltipPlace = tooltips[i].getBoundingClientRect();
-                activeTooltip.style.left = `${tooltipPlace.left} px`;
-                activeTooltip.style.top = `${tooltipPlace.bottom} px`;
+                activeTooltip.style.left = `${tooltipPlace.left}px`;
+                activeTooltip.style.top = `${tooltipPlace.bottom}px`;
             }
         }
     })
