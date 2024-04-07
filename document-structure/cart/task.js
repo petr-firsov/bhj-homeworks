@@ -9,7 +9,7 @@ const addButtons = document.querySelectorAll('.product__add');
 
 // Корзина
 const cart = document.querySelector('.cart__products');
-const productsInCart = document.getElementsByClassName('cart__product');
+const productsInCart = Array.from(document.getElementsByClassName('cart__product'));
 
 // Изображения товаров
 const productImages = document.querySelectorAll('.product__image');
@@ -33,7 +33,7 @@ for (let i = 0; i < productIncrease.length; i++) {
 // Добавление товара в корзину
 for (let i = 0; i < addButtons.length; i++) {
     addButtons[i].addEventListener('click', () => {
-        let productInCart = productsInCart.find(product => product === products[i]);
+        let productInCart = productsInCart.find(product => product.dataset.id === i);
         if (productInCart) {
             let thisProduct = productInCart.querySelector('.cart__product-count');
             thisProduct.textContent = Number(thisProduct.textContent) + Number(productQuantity[i]);
