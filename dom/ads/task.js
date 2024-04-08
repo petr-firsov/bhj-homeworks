@@ -6,11 +6,11 @@ let timerId = setInterval(function() {
         rotators[i].classList.remove('rotator__case_active');
         rotators[0].classList.add('rotator__case_active');
         i = 0;
+        return;
     }
     let color = rotators[i].dataset.color;
     rotators[i].style.color = color;
     rotators[i].classList.remove('rotator__case_active');
     rotators[i + 1].classList.add('rotator__case_active');
     i++;
-    // let speed = rotators[i].dataset.speed;
 }, 1000);

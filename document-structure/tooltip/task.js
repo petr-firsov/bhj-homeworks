@@ -16,13 +16,12 @@ for (let i = 0; i < tooltips.length; i++) {
 
             // Разместить подсказку на странице
             let tooltipPlace = tooltips[i].getBoundingClientRect();
-            tooltip.style.left = `${tooltipPlace.left} px`;
-            tooltip.style.top = `${tooltipPlace.bottom} px`;
-        } else {
-            if (activeTooltip.textContent === tooltips[i].title) {
+            tooltip.style.left = `${tooltipPlace.left}px`;
+            tooltip.style.top = `${tooltipPlace.bottom}px`;
+        } else if (activeTooltip.textContent === tooltips[i].title) {
                 // Убрать подсказку
                 activeTooltip.remove();
-            } else {
+        } else {
                 // Сменить текст 
                 let tooltipTitle = tooltips[i].getAttribute('title');
                 activeTooltip.innerText = tooltipTitle;
@@ -32,7 +31,6 @@ for (let i = 0; i < tooltips.length; i++) {
                 let tooltipPlace = tooltips[i].getBoundingClientRect();
                 activeTooltip.style.left = `${tooltipPlace.left}px`;
                 activeTooltip.style.top = `${tooltipPlace.bottom}px`;
-            }
         }
     })
 }

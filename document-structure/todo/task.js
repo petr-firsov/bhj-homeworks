@@ -1,28 +1,26 @@
 // Переменные формы
 const taskForm = document.getElementById('tasks__form');
 const taskInput = document.getElementById('task__input');
-const tasksList = document.getElementById('tasks__list');
+const taskList = document.getElementById('tasks__list');
+const tasks = document.getElementsByClassName('task');
 
+// Добавление новых заданий
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (taskInput.value.trim()) {
-        tasksList.insertAdjacentHTML('beforeend', '<div class="task"><div class="task__title"></div><a href="#" class="task__remove">&times;</a></div>');
-        let taskTitle = document.querySelector('.task__title');
-        taskTitle.innerText = taskInput.value;
+        taskList.insertAdjacentHTML('afterbegin', '<div class="task"><div class="task__title"></div><a href="#" class="task__remove">&times;</a></div>');
+        let newTask = taskList.firstChild;
+        let newTaskTitle = newTask.firstChild;
+        newTaskTitle.innerText = taskInput.value;
         taskForm.reset();
     }
 });
 
-// Переменные созданных заданий
-const tasks = document.getElementsByClassName('task');
-const taskRemoves = document.getElementsByClassName('task__remove');
-
-tasksList.addEventListener ('click', (click) => {
-    click.preventDefault();
-    for (let i = 0; i < taskRemoves.length; i++) {
-        if (click.currentTarger === taskRemoves[i]) {
-            tasks[i].remove();
-        }
+// Удаление созданных заданий
+taskList.addEventListener ('click', (event) => {
+    event.preventDefault();
+    if (event.target.classList.contains('task__remove')) {
+        event.target.parentElement.remove();
     }
 })
    
