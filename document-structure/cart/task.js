@@ -8,7 +8,10 @@ const quantityCounts = document.querySelectorAll('.product__quantity-value');
 const addBtns = document.querySelectorAll('.product__add');
 
 const cart = document.querySelector('.cart__products');
-const itemsInCart = Array.from(document.getElementsByClassName('cart__product'));
+const itemsInCart = document.getElementsByClassName('cart__product');
+
+const header = document.querySelector('header');
+const cartBlock = document.querySelector('.cart');
 
 
 // Выбор количества товара
@@ -25,26 +28,39 @@ for (let i = 0; i < products.length; i++) {
 }
 
 // Добавление товара в корзину
-for (let i = 0; i < addBtns.length; i++) {
+for (let i = 0; i < products.length; i++) {
     addBtns[i].addEventListener('click', () => {
         // Если товар добавлен, увеличить
-        let cartItem = itemsInCart.find(item => item.dataset.id === products[i].dataset.id);
+        let cartArray = Array.from(itemsInCart);
+        let cartItem = cartArray.find(item  => item.dataset.id === products[i].dataset.id);
         if (cartItem) {
             let cartItemCount = cartItem.querySelector('.cart__product-count');
-            cartItemCount.textContent = Number(cartItemCount.textContent) + Number(quantityCounts[i]);
+            cartItemCount.textContent = Number(cartItemCount.textContent) + Number(quantityCounts[i].textContent);
         } else {
         // Добавить новый товар
-        cart.insertAdjacentHTML('beforeEnd', '<div class="cart__product"><img class="cart__product-image"><div class="cart__product-count"></div></div>')
+        header.classList.remove('invisible');
+        cartBlock.classList.remove('invisible');
+
+        cart.insertAdjacentHTML('afterbegin', '<div class="cart__product"><img class="cart__product-image"><div class="cart__product-count"></div><div class="removeBtn">&times;</div></div>')
         
-        let cartProduct = document.querySelector('.cart__product');
-        cartProduct.dataset.id = `${i}`;
+        let newItem = cart.firstChild;
+        newItem.dataset.id = products[i].dataset.id;
 
-        let cartProductImage = document.querySelector('.cart__product-image');
+        let newImage = newItem.querySelector('.cart__product-image');
         let productImage = productImages[i].getAttribute('src');
-        cartProductImage.setAttribute('src', productImage);
+        newImage.setAttribute('src', productImage);
 
-        let cartProductCount = document.querySelector('.cart__product-count');
-        cartProductCount.textContent = quantityCounts[i].textContent; 
+        let cartProductCount = newItem.querySelector('.cart__product-count');
+        cartProductCount.textContent = Number(quantityCounts[i].textContent); 
         }
     });
+}
+
+const removeBtns = document.getElementsByClassName('removeBtn');
+
+// Удаление товара
+for (let i = 0; i < itemsInCart; i++) {
+    removeBtns[i].addEventListener('click', () => {
+        itemsInCart[i].remove();
+    })
 }

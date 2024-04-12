@@ -1,6 +1,10 @@
 body {
   font-family: Arial;
 }
+
+.invisible {
+  display: none;
+}
 .cart__products {
   display: flex;
   justify-content: center;
