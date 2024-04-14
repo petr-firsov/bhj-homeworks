@@ -1,9 +1,13 @@
+const request = new XMLHttpRequest();
 const progress = document.getElementById('progress');
-const xhr = new XMLHttpRequest();
 
-xhr.addEventListener('readystatechange', () => {
-
-});
+request.onprogress = function (event) {
+    if (request.response === request.DONE) {
+        progress.value = event.loaded / total;
+    } else if (request.response === request.DONE(4)) {
+        alert('Ошибка!')
+    }
+};
 
 xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/upload');
 xhr.send();

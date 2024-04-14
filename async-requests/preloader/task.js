@@ -1,8 +1,8 @@
-let request = new XMLHttpRequest();
+const request = new XMLHttpRequest();
 const loaderImg = document.getElementById('loader');
 const items = document.getElementById('items');
 
-request.addEventListener('readystatechange', () => {
+request.addEventListener('load', () => {
     if (request.readyState === request.DONE) {
         loaderImg.classList.remove('loader_active');
 
@@ -18,6 +18,8 @@ request.addEventListener('readystatechange', () => {
         let itemValue = newItem.querySelector('.item__value');
         itemValue.innerText = currencies[currency].Value;
     }
+    } else if (request.readyState === request.DONE(4)) {
+        alert('Ошибка загрузки данных!');
     }
 })
 
