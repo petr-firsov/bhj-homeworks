@@ -9,5 +9,5 @@ request.onprogress = function (event) {
     }
 };
 
-xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/upload');
-xhr.send();
+request.open('GET', 'https://students.netoservices.ru/nestjs-backend/upload');
+request.send();
