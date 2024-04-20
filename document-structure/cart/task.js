@@ -60,7 +60,8 @@ const removeBtns = document.getElementsByClassName('removeBtn');
 
 // Удаление товара
 for (let i = 0; i < itemsInCart; i++) {
-    removeBtns[i].addEventListener('click', () => {
+    itemsInCart[i].addEventListener('click', (event) => {
+        if (event.target === removeBtns[i])
         itemsInCart[i].remove();
     })
 }
