@@ -1,15 +1,9 @@
 const request = new XMLHttpRequest();
 const progress = document.getElementById('progress');
 
-request.onprogress = function (event) {
-    if (request.response === request.DONE) {
-        progress.value = event.loaded / total;
-    } 
-    
-request.onerror = function() {
-        alert('Ошибка!')
-    }
-};
+request.upload.onprogress = function (event) {
+    progress.value = `${event.loaded}` / `${event.total}`;
+}
 
-request.open('GET', 'https://students.netoservices.ru/nestjs-backend/upload');
+request.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload');
 request.send();
