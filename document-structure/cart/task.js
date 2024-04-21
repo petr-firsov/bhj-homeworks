@@ -56,12 +56,10 @@ for (let i = 0; i < products.length; i++) {
     });
 }
 
-const removeBtns = document.getElementsByClassName('removeBtn');
-
 // Удаление товара
-for (let i = 0; i < itemsInCart; i++) {
-    itemsInCart[i].addEventListener('click', (event) => {
-        if (event.target === removeBtns[i])
-        itemsInCart[i].remove();
-    })
-}
+
+cart.addEventListener('click', (event) => {
+    if (event.target.classList.contains('removeBtn')) {
+        event.target.parentElement.remove();
+    }
+})

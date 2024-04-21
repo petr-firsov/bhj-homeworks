@@ -8,10 +8,7 @@ const tasks = document.getElementsByClassName('task');
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (taskInput.value.trim()) {
-        taskList.insertAdjacentHTML('afterbegin', '<div class="task"><div class="task__title">`${taskInput.value}`</div><a href="#" class="task__remove">&times;</a></div>');
-        // let newTask = taskList.firstChild;
-        // let newTaskTitle = newTask.firstChild;
-        // newTaskTitle.innerText = taskInput.value;
+        taskList.insertAdjacentHTML('afterbegin', `<div class="task"><div class="task__title">${taskInput.value}</div><a href="#" class="task__remove">&times;</a></div>`);
         taskForm.reset();
     }
 });
