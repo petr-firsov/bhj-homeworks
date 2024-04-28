@@ -1,9 +1,16 @@
-const request = new XMLHttpRequest();
+const form = document.getElementById('form');
 const progress = document.getElementById('progress');
 
-request.upload.onprogress = function (event) {
-    progress.value = `${event.loaded}` / `${event.total}`;
-}
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-request.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload');
-request.send();
+    const fileForm = new FormData(form);
+
+    const request = new XMLHttpRequest();
+    request.open('GET', 'https://students.netoservices.ru/nestjs-backend/upload');
+    request.send(fileForm);
+
+    request.upload.onprogress = (event) => {
+        progress.value = event.loaded / event.total;
+    };
+});
