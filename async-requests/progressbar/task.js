@@ -7,10 +7,11 @@ form.addEventListener('submit', (event) => {
     const fileForm = new FormData(form);
 
     const request = new XMLHttpRequest();
-    request.open('GET', 'https://students.netoservices.ru/nestjs-backend/upload');
+    request.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload');
     request.send(fileForm);
 
     request.upload.onprogress = (event) => {
-        progress.value = event.loaded / event.total;
+        progress.value = toString(event.loaded / event.total);
     };
+
 });
