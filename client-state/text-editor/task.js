@@ -1,7 +1,8 @@
 const editor = document.getElementById('editor');
 
 window.onload = function() {
-    editor.value = localStorage.editorText;
+    localStorage.getItem('editorText');
+    // editor.value = localStorage.editorText;
 }
 
 window.onbeforeunload = function() {
