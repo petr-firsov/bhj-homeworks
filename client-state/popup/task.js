@@ -3,7 +3,7 @@ const modalClose = document.querySelector('.modal__close');
 
 window.onload = function() {
     let cookie = document.cookie;
-    if (!cookie.includes('popup')) {
+    if (cookie.includes('popup') === false) {
         modal.classList.add('modal_active');
     }
 };
